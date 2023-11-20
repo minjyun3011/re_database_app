@@ -25,7 +25,7 @@ class ReticketController extends Controller
         dump($eloquent_where);
 
         // 1件取得()
-        $builder_first = Db::table("retickets")->where("id", 1)->first();
+        $builder_first = DB::table("retickets")->where("id", 1)->first();
         $eloquent_first1 = Reticket::where("id", 1)->first();
         $eloquent_first2 = Reticket::find(1);  // 検索カラムが主キー(id)の場合のみ
         dump($builder_first, $eloquent_first1, $eloquent_first2);
@@ -99,5 +99,11 @@ class ReticketController extends Controller
     public function __destruct()
     {
         dump(DB::getRawQueryLog());
+    }
+    public function show($ticket_id)
+    {
+        $seat_number = DB::table("retickets")->where("seat_number", ($ticket_id))->get();
+        $name =  DB::table("retickets")->where("name", ($ticket_id))->get();
+        return view('show', ['seat_number' => $seat_number, 'name' => $name, 'ticket_id' => $ticket_id]);
     }
 }
