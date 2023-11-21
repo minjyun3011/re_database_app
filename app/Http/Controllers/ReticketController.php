@@ -91,19 +91,18 @@ class ReticketController extends Controller
         dump($tickets);
     }
 
-    public function __construct()
-    {
-        DB::enableQueryLog();
-    }
+    // public function __construct()
+    // {
+    //     DB::enableQueryLog();
+    // }
 
-    public function __destruct()
+    // public function __destruct()
+    // {
+    //     dump(DB::getRawQueryLog());
+    // }
+    public function show($retickets_id)
     {
-        dump(DB::getRawQueryLog());
-    }
-    public function show($ticket_id)
-    {
-        $seat_number = DB::table("retickets")->where("seat_number", ($ticket_id))->get();
-        $name =  DB::table("retickets")->where("name", ($ticket_id))->get();
-        return view('show', ['seat_number' => $seat_number, 'name' => $name, 'ticket_id' => $ticket_id]);
+        $ticket = DB::table("retickets")->where("id", $retickets_id) ->first();
+        return view('show', ['ticket' => $ticket]);
     }
 }

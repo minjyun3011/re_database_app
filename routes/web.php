@@ -19,4 +19,4 @@ Route::get('/insert', [ReticketController::class, "insert"]);
 Route::get('/select', [ReticketController::class, "select"]);
 Route::get('/update', [ReticketController::class, "update"]);
 Route::get('/delete', [ReticketController::class, "delete"]);
-Route::get('/retickets/{reticket_id}', [ReticketController::class, "show"]);
+Route::get('/retickets/{retickets_id}', [ReticketController::class, "show"]);
